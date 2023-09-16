@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import joblib
@@ -7,6 +8,7 @@ from .forms import PredictionForm
 
 model = joblib.load(settings.MODEL_PATH)
 
+@csrf_exempt
 @api_view(['POST'])
 def predict_success(request):
     data = request.data
@@ -30,6 +32,7 @@ def predict_success(request):
     prediction = model.predict([features])
     return Response({"success_potential": prediction[0]})
 
+@csrf_exempt
 def predict_form(request):
     form = PredictionForm()
     prediction = None
@@ -42,4 +45,3 @@ def predict_form(request):
             prediction = model.predict([features])[0]
 
     return render(request, 'predict_form.html', {'form': form, 'prediction': prediction})
-
