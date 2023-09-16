@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-nru2s@ni(kgz-kfq)^qza5tvn=tvt)@ta8zlcb0r*d2nv)1@r2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['bipmusic.azurewebsites.net']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
