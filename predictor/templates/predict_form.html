@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Success Predictor</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .logo-container {
+            position: block;
+            padding-left: 20px; 
+            padding-top: 20px;
+            margin: 0;
+        }
+    
+        .logo-container img {
+            height: 60px;   
+            width: auto;
+        }
+    </style>
+
+</head>
+<body>
+
+    
+    
+    <div class="logo-container">
+        <img src="{% static 'predictor/images/logo-bip.png' %}" alt="Website Logo">
+    </div>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Song Success Predictor</h1>
+
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+        {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+            <li><strong>{{ field }}</strong>: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-md-4">
+                {{ form.danceability.label_tag }} 
+                <input type="text" name="{{ form.danceability.name }}" value="0.642" style="color:gray;" onfocus="if(this.value == '0.642') { this.value = ''; this.style.color='black'; }" onblur="if(this.value == '') { this.value = '0.642'; this.style.color='gray'; }">
+            </div>
+            <div class="col-md-4">
+                {{ form.energy.label_tag }} 
+                <input type="text" name="{{ form.energy.name }}" value="0.695" style="color:gray;" onfocus="if(this.value == '0.695') { this.value = ''; this.style.color='black'; }" onblur="if(this.value == '') { this.value = '0.695'; this.style.color='gray'; }">
+            </div>
+            <div class="col-md-4">
+                {{ form.key.label_tag }} 
+                <input type="text" name="{{ form.key.name }}" value="7.0" style="color:gray;" onfocus="if(this.value == '7.0') { this.value = ''; this.style.color='black'; }" onblur="if(this.value == '') { this.value = '7.0'; this.style.color='gray'; }">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                {{ form.loudness.label_tag }} 
+                <input type="text" name="{{ form.loudness.name }}" value="-5.62" style="color:gray;" onfocus="if(this.value == '-5.62') { this.value = ''; this.style.color='black'; }" onblur="if(this.value == '') { this.value = '-5.62'; this.style.color='gray'; }">
+            </div>
+            <div class="col-md-4">
+                {{ form.mode.label_tag }} 
+                <label for="{{ form.mode.id_for_label }}">{{ form.mode.label }}</label>
+    {{ form.mode }}
+            </div>
+            <div class="col-md-4">
+                {{ form.speechiness.label_tag }} 
+                <input type="text" name="{{ form.speechiness.name }}" value="0.0281" style="color:gray;" onfocus="if(this.value == '0.0281') { this.value = ''; this.style.color='black'; }" onblur="if(this.value == '') { this.value = '0.0281'; this.style.color='gray'; }">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                {{ form.acousticness.label_tag }} 
+                <input type="text" name="{{ form.acousticness.name }}" value="0.000443" style="color:gray;" onfocus="if(this.value == '0.000443') { this.value = ''; this.style.color='black'; }" onblur="if(this.value == '') { this.value = '0.000443'; this.style.color='gray'; }">
+            </div>
+            <div class="col-md-4">
+                {{ form.instrumentalness.label_tag }} 
+                <input type="text" name="{{ form.instrumentalness.name }}" value="0.02" style="color:gray;" onfocus="if(this.value == '0.00001') { this.value = ''; this.style.color='black'; }" onblur="if(this.value == '') { this.value = '0.00001'; this.style.color='gray'; }">
+            </div>
+            <div class="col-md-4">
+                {{ form.liveness.label_tag }} 
+                <input type="text" name="{{ form.liveness.name }}" value="0.0753" style="color:gray;" onfocus="if(this.value == '0.0753') { this.value = ''; this.style.color='black'; }" onblur="if(this.value == '') { this.value = '0.0753'; this.style.color='gray'; }">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                {{ form.valence.label_tag }} 
+                <input type="text" name="{{ form.valence.name }}" value="0.642" style="color:gray;" onfocus="if(this.value == '0.642') { this.value = ''; this.style.color='black'; }" onblur="if(this.value == '') { this.value = '0.642'; this.style.color='gray'; }">
+            </div>
+            <div class="col-md-4">
+                {{ form.tempo.label_tag }} 
+                <input type="text" name="{{ form.tempo.name }}" value="110" style="color:gray;" onfocus="if(this.value == '103984') { this.value = ''; this.style.color='black'; }" onblur="if(this.value == '') { this.value = '103984'; this.style.color='gray'; }">
+            </div>
+            <div class="col-md-4">
+                {{ form.time_signature.label_tag }} 
+                <input type="text" name="{{ form.time_signature.name }}" value="4.0" style="color:gray;" onfocus="if(this.value == '4.0') { this.value = ''; this.style.color='black'; }" onblur="if(this.value == '') { this.value = '4.0'; this.style.color='gray'; }">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                {{ form.duration_min.label_tag }} 
+                <input type="text" name="{{ form.duration_min.name }}" value="2.5" style="color:gray;" onfocus="if(this.value == '3849333') { this.value = ''; this.style.color='black'; }" onblur="if(this.value == '') { this.value = '3849333'; this.style.color='gray'; }">
+            </div>
+        </div>
+        
+        
+
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </div>
+        </div>
+    </form>
+
+
+    {% if prediction %}
+    <div class="alert alert-success mt-4" role="alert">
+        Predicted Success Potential: {{ prediction }}
+    </div>
+    {% endif %}
+
+    <div class="mt-5">
+        <h3>API Backend</h3>
+        <p>
+            In addition to this interface, we also offer an API backend for programmatic access. Here's how you can consume it:
+        </p>
+
+        <h5>Endpoint:</h5>
+        <pre>https://yourdomain.com/predict/</pre>  
+
+        <h5>Method:</h5>
+        <p>POST</p>
+
+        <h5>Body (JSON example):</h5>
+        <pre>
+{
+    "danceability": 0.642,
+    "energy": 0.695,
+    "key": 7.0,
+    "loudness": -5.62,
+    "mode": 1.0,
+    "speechiness": 0.0281,
+    "acousticness": 0.000443,
+    "instrumentalness": 0.02,
+    "liveness": 0.0753,
+    "valence": 0.642,
+    "tempo": 110,
+    "time_signature": 4.0,
+    "duration_min": 2.5
+}
+        </pre>
+
+        <h5>Usage:</h5>
+        <pre>curl -X POST -H "Content-Type: application/json" -d @your_json_file.json https://yourdomain.com/predict/</pre> 
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
